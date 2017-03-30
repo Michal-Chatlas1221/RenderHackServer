@@ -93,5 +93,13 @@ socket.on('NOTE_BROADCAST', msg => {
 });
 
 socket.on('WIN', msg => {
-    alert('Player ' + msg.username + ' has won! The answer was ' + msg.guess + '. Congratulations!!!!!');
+  alert('Player ' + msg.username + ' has won! The answer was ' + msg.guess + '. Congratulations!!!!!');
 });
+
+document.getElementById('submitButton').addEventListener('click', e => {
+  var data = {
+    username: document.getElementById('nick').value,
+    guess: document.getElementById('answer').value
+  }
+  socket.emit('GUESS', data);
+})

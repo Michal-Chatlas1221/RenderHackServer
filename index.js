@@ -20,11 +20,11 @@ app.get('/', function(req, res) {
 });
 
 app.get('/host', function (req, res) {
-  res.sendFile('web/index.htm')
+  res.sendFile('root/RenderHackServer/web/index.htm')
 });
 
 app.get('/client', function (req, res) {
-  res.sendFile('web-guesser/index.htm')
+  res.sendFile('root/RenderHackServer/web-guesser/index.htm')
 });
 
 http.listen(3000, function() {

@@ -22,6 +22,7 @@ module.exports = {
       })
 
       socket.on('GUESS', msg => {
+        console.log(msg, this.proper);
         if (msg.guess === this.proper) {
           channel.sockets.emit('WIN', msg);
         }

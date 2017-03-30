@@ -3,18 +3,25 @@
 
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
-    <script src="js/akai.js"></script>
-
+    <link rel="stylesheet" href="css/akai.css">
+    <script src="js/setup.js"></script>
+    <script src="js/visualisation.js"></script>
 </head>
 
 <body>
-    Your nickname:<br>
-    <input type="text" id="nick" value="">
-    <br> Your answer: <br>
-    <input type="text" id="answer" value="">
-    <br>
-    <input type="button" id="submitButton" value="Submit">
+    <div id="canvasWrapper">
+        <canvas id="visualisation"></canvas>
+    </div>
+    <div id="answerWrapper">
+        <br>Your nickname:<br>
+        <input type="text" id="nick" value="">
+        <br> Your answer: <br>
+        <input type="text" id="answer" value="">
+        <br>
+        <input type="button" id="submitButton" value="Submit">
+    </div>
 
+    <script src="js/akai.js"></script>
     <script>
         startMidi();
     </script>

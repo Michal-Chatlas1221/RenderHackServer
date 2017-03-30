@@ -1,3 +1,5 @@
+var socket = io.connect('http://178.62.43.178:3000');
+
 var ctx = (function getCtx() {
   var Ctor =
     (typeof AudioContext !== 'undefined' && AudioContext) ||
@@ -34,16 +36,7 @@ function noteOff(noteNumber) {
 }
 
 function midiMessageReceived(ev) {
-  var arr = Array.prototype.slice.call(ev.data);
-  console.log(ev);
-  console.log(arr.map(function (num) { return (+num).toString(16); }).join());
-  window.lastEvent = ev;
-  
-  switch(arr[0]) {
-    case 0x90: return noteOn(arr[1], arr[2]);
-    case 0x80: return noteOff(arr[1]);
-  }
-  
+  socket.emit('NOTE', ev);
 }
 
 function onMIDIStarted(midi) {
@@ -87,3 +80,12 @@ function startMidi() {
       navigator.requestMIDIAccess().then( onMIDIStarted, onMIDISystemError );
   });
 }
+
+socket.on('NOTE_BROADCAST', msg => {
+
+  var arr = Array.prototype.slice.call(msg.data);
+  switch(arr[0]) {
+    case 0x90: return noteOn(arr[1], arr[2]);
+    case 0x80: return noteOff(arr[1]);
+  }
+});

@@ -6,14 +6,22 @@
   <script src="js/setup.js"></script>
   <script src="js/akai.js"></script>
   <script src="js/visualisation.js"></script>
+  <script src="js/host.js"></script>
 </head>
 <body>
-<label>Shape:</label>
-<select id="shape">
-  <option value="square">Square</option>
-  <option value="sine">Sine</option>
-  <option value="sawtooth">Sawtooth</option>
-</select>
+<div id="host">
+  <label for="shape">Shape:</label>
+  <select id="shape">
+    <option value="square">Square</option>
+    <option value="sine">Sine</option>
+    <option value="sawtooth">Sawtooth</option>
+  </select>
+  <div>
+    <label for="hostPrompt">Prompt to start a new game:</label>
+    <input type="text" id="hostPrompt">
+    <button type="button" onclick="startNewHostGame()">Start New Game</button>
+  </div>
+</div>
 <div id="canvasWrapper">
   <canvas id="visualisation"></canvas>
 </div>

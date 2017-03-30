@@ -7,8 +7,10 @@ const channel = require('./channel');
 
 channel.init(http);
 
-app.use(express.static('web'));
-app.use(express.static('web-guesser'))
+// app.use(express.static('web'));
+// app.use(express.static('web-guesser'));
+app.use('/host', express.static('web'))
+app.use('/client', express.static('web-guesser'))
 
 app.get('/', function(req, res) {
   res.send(`

@@ -10,7 +10,7 @@ app.get('/', function(req, res) {
   res.send(`
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
     <script>
-        var socket = io.connect('http://localhost:3000/');
+        var socket = io.connect('http://178.62.43.178:3000');
     </script>
     `);
 });

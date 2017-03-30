@@ -2,23 +2,30 @@
 <html>
 
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
-    <link rel="stylesheet" href="css/akai.css">
-    <script src="js/setup.js"></script>
-    <script src="js/akai.js"></script>
-    <script src="js/visualisation.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+  <link rel="stylesheet" href="css/akai.css">
+  <script src="js/setup.js"></script>
+  <script src="js/akai.js"></script>
+  <script src="js/visualisation.js"></script>
+  <script src="js/host.js"></script>
 </head>
 
 <body>
-    <label>Shape:</label>
-    <select id="shape">
-  <option value="square">Square</option>
-  <option value="sine">Sine</option>
-  <option value="sawtooth">Sawtooth</option>
-</select>
-    <div id="canvasWrapper">
-        <canvas id="visualisation"></canvas>
-    </div>
+<div id="host">
+  <label for="shape">Shape:</label>
+  <select id="shape">
+    <option value="square">Square</option>
+    <option value="sine">Sine</option>
+    <option value="sawtooth">Sawtooth</option>
+  </select>
+  <div>
+    <label for="hostPrompt">Prompt to start a new game:</label>
+    <input type="text" id="hostPrompt">
+    <button type="button" onclick="startNewHostGame()">Start New Game</button>
+  </div>
+</div>
+<div id="canvasWrapper">
+  <canvas id="visualisation" width="256" height="256"></canvas>
+</div>
 </body>
-
 </html>

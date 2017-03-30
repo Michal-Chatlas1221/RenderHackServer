@@ -1,4 +1,3 @@
-var socket = io.connect('http://178.62.43.178:3000');
 
 var currentNotes = {};
 

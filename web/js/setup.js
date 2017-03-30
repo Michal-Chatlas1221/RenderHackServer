@@ -8,3 +8,5 @@ window.ctx = (function getCtx() {
 
 window.outNode = window.ctx.createGain();
 window.outNode.connect(window.ctx.destination);
+
+window.socket = io.connect('http://178.62.43.178:3000');

@@ -86,6 +86,10 @@ socket.on('NOTE_BROADCAST', msg => {
 });
 
 socket.on('WIN', msg => {
+  var notes = window.currentNotes || {};
+  Object.keys(notes).forEach(function (note) {
+    notes[note].stop();
+  });
   alert('Player ' + msg.username + ' has won! The answer was ' + msg.guess + '. Congratulations!!!!!');
 });
 

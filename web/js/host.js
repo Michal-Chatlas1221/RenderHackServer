@@ -1,5 +1,9 @@
 function setupHostGame() {
   socket.on('WIN', function (msg) {
+    var notes = window.currentNotes || {};
+    Object.keys(notes).forEach(function (note) {
+      notes[note].stop();
+    });
     alert('winning player is: ' + msg.username);
   });
 }

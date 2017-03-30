@@ -1,28 +1,21 @@
 var socket = io.connect('http://178.62.43.178:3000');
 
-var ctx = (function getCtx() {
-    var Ctor =
-        (typeof AudioContext !== 'undefined' && AudioContext) ||
-        (typeof webkitAudioContext !== 'undefined' && webkitAudioContext);
-
-    return Ctor && new Ctor();
-}());
-
 var currentNotes = {};
 
 function noteToFrequency(note) {
     return 440 * Math.pow(2, (note - 69) / 12);
 }
 
-function noteOn(noteNumber, velocity) {
+function noteOn(noteNumber, velocity, shape) {
     if (currentNotes[noteNumber]) {
         return;
     }
     var gainNode = ctx.createGain(),
         oscNode = ctx.createOscillator();
     oscNode.connect(gainNode);
-    gainNode.connect(ctx.destination);
+    gainNode.connect(outNode);
     oscNode.frequency.value = noteToFrequency(noteNumber);
+    oscNode.type = shape;
     oscNode.start(0);
     currentNotes[noteNumber] = oscNode;
 }
@@ -82,11 +75,11 @@ function startMidi() {
 }
 
 socket.on('NOTE_BROADCAST', msg => {
-
+    if (!msg.data) { return; }
     var arr = Array.prototype.slice.call(msg.data);
     switch (arr[0]) {
         case 0x90:
-            return noteOn(arr[1], arr[2]);
+            return noteOn(arr[1], arr[2], msg.shape);
         case 0x80:
             return noteOff(arr[1]);
     }

@@ -89,3 +89,8 @@ socket.on('NOTE_BROADCAST', msg => {
     case 0x80: return noteOff(arr[1]);
   }
 });
+
+socket.on('WIN', msg => {
+  alert('Player ' + msg.username + ' has won! The answer was ' + msg.guess + '. Congratulations!!!!!');
+});
+

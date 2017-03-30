@@ -54,6 +54,10 @@ module.exports = {
         this.history = this.history.map(e => e.id === msg.id && e.userId === socket.userId ? Object.assign({}, e, {msg: msg.newValue}) : e);
         socket.broadcast.emit(events.MESSAGE_UPDATE_BROADCAST, this.history.find(e => e.id === msg.id));
       })
+
+      socket.on(events.NOTE, msg => {
+        channel.sockets.emit(events.NOTE_BROADCAST, msg);
+      })
     });
   }
 

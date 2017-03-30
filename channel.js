@@ -4,7 +4,7 @@ const io = require('socket.io');
 const events = require('./events');
 
 const sequence = () => {
-  let counter = 1;
+  var counter = 1;
 
   return () => counter++;
 };

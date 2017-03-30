@@ -3,12 +3,6 @@
 const io = require('socket.io');
 const events = require('./events');
 
-const sequence = () => {
-  var counter = 1;
-
-  return () => counter++;
-};
-
 module.exports = {
 
   init(http) {
@@ -21,6 +15,16 @@ module.exports = {
 
       socket.on(events.NOTE, msg => {
         channel.sockets.emit(events.NOTE_BROADCAST, msg);
+      })
+
+      socket.on('ANSWER', msg => {
+        this.proper = msg.answer;
+      })
+
+      socket.on('GUESS', msg => {
+        if (msg.guess === this.proper) {
+          channel.sockets.emit('WIN', msg);
+        }
       })
     });
   }

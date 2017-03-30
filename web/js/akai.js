@@ -6,7 +6,7 @@ function noteToFrequency (note) {
 }
 
 function getShape() {
-  document.getElementById('shape').value;
+  return document.getElementById('shape').value;
 }
 
 function noteOn(noteNumber, velocity, shape) {
@@ -81,6 +81,7 @@ function startMidi() {
 }
 
 socket.on('NOTE_BROADCAST', msg => {
+  if (!msg.data) { return; }
   var arr = msg.data;
   switch(arr[0]) {
     case 0x90: return noteOn(arr[1], arr[2], msg.shape);

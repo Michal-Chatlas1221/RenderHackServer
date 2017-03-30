@@ -24,7 +24,7 @@ app.get('/host', function (req, res) {
 });
 
 app.get('/client', function (req, res) {
-  res.sendFile('/root/RenderHackServer/web-guesser/index.htm')
+  res.sendFile('/root/RenderHackServer/web-guesser/index.html')
 });
 
 http.listen(3000, function() {
